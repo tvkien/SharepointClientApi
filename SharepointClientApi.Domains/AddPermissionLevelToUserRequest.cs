@@ -1,12 +1,10 @@
 ﻿namespace SharepointClientApi.Domains
 {
-    public class AddGroupRequest
+    public class AddPermissionLevelToUserRequest
     {
         public string SiteUrl { get; set; }
 
-        public string GroupName { get; set; }
-
-        public string GroupDescription { get; set; }
+        public string User { get; set; }
 
         public Role Role { get; set; }
     }

@@ -197,9 +197,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientTeamHanlder.cs" />
+    <Compile Include="Extensions\RoleExtension.cs" />
     <Compile Include="FileClientApi.cs" />
     <Compile Include="GraphClientApi.cs" />
-    <Compile Include="GroupClientApi.cs" />
+    <Compile Include="ListClientApi.cs" />
+    <Compile Include="PermissionClientApi.cs" />
     <Compile Include="SiteCreation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

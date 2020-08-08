@@ -42,16 +42,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstractions\IClientTeamHanlder.cs" />
     <Compile Include="Abstractions\IFileClientApi.cs" />
     <Compile Include="Abstractions\IGraphClientApi.cs" />
-    <Compile Include="Abstractions\IGroupClientApi.cs" />
+    <Compile Include="Abstractions\IListClientApi.cs" />
+    <Compile Include="Abstractions\IPermissionClientApi.cs" />
     <Compile Include="Abstractions\ISiteCreation.cs" />
     <Compile Include="AddGroupRequest.cs" />
+    <Compile Include="AddPermissionLevelToUserRequest.cs" />
+    <Compile Include="AddUserToGroupRequest.cs" />
     <Compile Include="AppConfigurations.cs" />
+    <Compile Include="ClientTeamRequest.cs" />
     <Compile Include="CommunicationSiteRequest.cs" />
+    <Compile Include="CreateDocumentLibraryRequest.cs" />
     <Compile Include="CreateSubSiteRequest.cs" />
     <Compile Include="Language.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Role.cs" />
     <Compile Include="TeamSiteCollectionRequest.cs" />
     <Compile Include="TeamSiteNoGroupRequest.cs" />
     <Compile Include="UploadFileRequest.cs" />

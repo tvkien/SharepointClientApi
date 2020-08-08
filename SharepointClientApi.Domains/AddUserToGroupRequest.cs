@@ -1,13 +1,11 @@
 ﻿namespace SharepointClientApi.Domains
 {
-    public class AddGroupRequest
+    public class AddUserToGroupRequest
     {
         public string SiteUrl { get; set; }
 
         public string GroupName { get; set; }
 
-        public string GroupDescription { get; set; }
-
-        public Role Role { get; set; }
+        public string[] Users { get; set; }
     }
 }

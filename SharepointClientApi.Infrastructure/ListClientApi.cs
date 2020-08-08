@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace SharepointClientApi.Infrastructure
 {
-    public class GroupClientApi : IGroupClientApi
+    public class ListClientApi : IListClientApi
     {
-        public Task AddGroupAsync(AddGroupRequest request)
+        public Task CreateDocumentLibraryAsync(CreateDocumentLibraryRequest request)
         {
             using var authenticationManager = new AuthenticationManager();
             using var context = authenticationManager.GetSharePointOnlineAuthenticatedContextTenant(
@@ -16,13 +16,7 @@ namespace SharepointClientApi.Infrastructure
                 AppConfigurations.SpoUserAdmin,
                 AppConfigurations.PasswordSecure);
 
-            var groupExists = context.Web.GroupExists(request.GroupName);
-
-            if (!groupExists)
-            {
-                context.Web.AddGroup(request.GroupName, request.GroupDescription, true);
-            }
-
+            context.Web.CreateDocumentLibrary(request.ListName);
             return Task.CompletedTask;
         }
     }

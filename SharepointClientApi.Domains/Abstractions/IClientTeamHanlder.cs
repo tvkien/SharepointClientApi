@@ -2,8 +2,8 @@
 
 namespace SharepointClientApi.Domains.Abstractions
 {
-    public interface IGroupClientApi
+    public interface IClientTeamHanlder
     {
-        Task AddGroupAsync(AddGroupRequest request);
+        Task Handle(ClientTeamRequest request);
     }
 }

@@ -19,6 +19,10 @@ namespace SharepointClientApi.Dependencies
 
             services.AddScoped<IGraphClientApi, GraphClientApi>();
             services.AddScoped<ISiteCreation, SiteCreation>();
+            services.AddScoped<IClientTeamHanlder, ClientTeamHanlder>();
+            services.AddScoped<IFileClientApi, FileClientApi>();
+            services.AddScoped<IListClientApi, ListClientApi>();
+            services.AddScoped<IPermissionClientApi, PermissionClientApi>();
 
             services.AddControllersAsServices(typeof(Startup).Assembly.GetExportedTypes()
                 .Where(x => !x.IsAbstract && !x.IsGenericTypeDefinition)
