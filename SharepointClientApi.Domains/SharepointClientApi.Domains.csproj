@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstractions\IFileClientApi.cs" />
     <Compile Include="Abstractions\IGraphClientApi.cs" />
     <Compile Include="Abstractions\ISiteCreation.cs" />
     <Compile Include="AppConfigurations.cs" />
@@ -51,6 +52,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TeamSiteCollectionRequest.cs" />
     <Compile Include="TeamSiteNoGroupRequest.cs" />
+    <Compile Include="UploadFileRequest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

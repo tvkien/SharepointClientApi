@@ -197,6 +197,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FileClientApi.cs" />
     <Compile Include="GraphClientApi.cs" />
     <Compile Include="SiteCreation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
