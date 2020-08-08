@@ -1,10 +1,9 @@
 ﻿using Microsoft.SharePoint.Client;
 using OfficeDevPnP.Core;
+using OfficeDevPnP.Core.Entities;
 using OfficeDevPnP.Core.Sites;
 using SharepointClientApi.Domains;
 using SharepointClientApi.Domains.Abstractions;
-using System.Linq;
-using System.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
@@ -23,7 +22,9 @@ namespace SharepointClientApi.Infrastructure
         {
             using var context = new ClientContext(AppConfigurations.SpoUrlAdmin)
             {
-                Credentials = new SharePointOnlineCredentials(AppConfigurations.SpoUserAdmin, PasswordSecure)
+                Credentials = new SharePointOnlineCredentials(
+                    AppConfigurations.SpoUserAdmin, 
+                    AppConfigurations.PasswordSecure)
             };
 
             var communicationSite = new CommunicationSiteCollectionCreationInformation
@@ -94,14 +95,23 @@ namespace SharepointClientApi.Infrastructure
             return teamNoGroupSiteCollection.Url;
         }
 
-        private SecureString PasswordSecure => GetPasswordSecure();
-
-        private SecureString GetPasswordSecure()
+        public Task<string> CreateSubSiteAsync(CreateSubSiteRequest request)
         {
-            SecureString secureString = new SecureString();
-            AppConfigurations.SpoUserPassword.ToList().ForEach(secureString.AppendChar);
+            using var authmanager = new AuthenticationManager();
+            using var context = authmanager.GetSharePointOnlineAuthenticatedContextTenant(
+                request.SiteUrl, 
+                AppConfigurations.SpoUserAdmin,
+                AppConfigurations.PasswordSecure);
 
-            return secureString;
+            var subSite = context.Web.CreateWeb(new SiteEntity
+            {
+                Url = request.Alias,
+                Title = request.Title,
+                Lcid = (uint)request.Language,
+                Description = request.Description,
+            });
+
+            return Task.FromResult(subSite.ServerRelativeUrl);
         }
 
         private static X509Certificate2 GetX509Certificate2()

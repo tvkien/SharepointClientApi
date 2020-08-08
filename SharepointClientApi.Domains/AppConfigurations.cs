@@ -1,4 +1,6 @@
 ﻿using System.Configuration;
+using System.Linq;
+using System.Security;
 
 namespace SharepointClientApi.Domains
 {
@@ -21,5 +23,15 @@ namespace SharepointClientApi.Domains
         public static string AzureInstance => ConfigurationManager.AppSettings["AzureInstance"];
 
         public static string GraphResource => ConfigurationManager.AppSettings["GraphResource"];
+
+        public static SecureString PasswordSecure => GetPasswordSecure();
+
+        private static SecureString GetPasswordSecure()
+        {
+            var secureString = new SecureString();
+            SpoUserPassword.ToList().ForEach(secureString.AppendChar);
+
+            return secureString;
+        }
     }
 }

@@ -9,5 +9,7 @@ namespace SharepointClientApi.Domains.Abstractions
         Task<string> CreateTeamSiteNoGroupAsync(TeamSiteNoGroupRequest request);
 
         Task<string> CreateTeamSiteCollectionAsync(TeamSiteCollectionRequest request);
+
+        Task<string> CreateSubSiteAsync(CreateSubSiteRequest request);
     }
 }
