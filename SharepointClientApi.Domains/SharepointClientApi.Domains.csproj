@@ -44,7 +44,9 @@
   <ItemGroup>
     <Compile Include="Abstractions\IFileClientApi.cs" />
     <Compile Include="Abstractions\IGraphClientApi.cs" />
+    <Compile Include="Abstractions\IGroupClientApi.cs" />
     <Compile Include="Abstractions\ISiteCreation.cs" />
+    <Compile Include="AddGroupRequest.cs" />
     <Compile Include="AppConfigurations.cs" />
     <Compile Include="CommunicationSiteRequest.cs" />
     <Compile Include="CreateSubSiteRequest.cs" />
