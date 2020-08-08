@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using SharepointClientApi.Dependencies;
+using System.Web.Http;
 
 namespace SharepointClientApi
 {
@@ -7,6 +8,7 @@ namespace SharepointClientApi
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
+            Startup.Bootstrapper(config);
 
             // Web API routes
             config.MapHttpAttributeRoutes();
