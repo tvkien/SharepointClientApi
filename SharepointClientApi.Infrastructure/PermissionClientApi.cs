@@ -9,14 +9,9 @@ namespace SharepointClientApi.Infrastructure
 {
     public class PermissionClientApi : IPermissionClientApi
     {
-        public Task AddGroupAsync(AddGroupRequest request)
+        public Task AddGroupAsync(GroupPermissionRequest request)
         {
-            using var authenticationManager = new AuthenticationManager();
-            using var context = authenticationManager.GetSharePointOnlineAuthenticatedContextTenant(
-                request.SiteUrl,
-                AppConfigurations.SpoUserAdmin,
-                AppConfigurations.PasswordSecure);
-
+            using var context = GetSharePointOnlineContext(request.SiteUrl);
             var groupExists = context.Web.GroupExists(request.GroupName);
 
             if (!groupExists)
@@ -24,32 +19,34 @@ namespace SharepointClientApi.Infrastructure
                 context.Web.AddGroup(request.GroupName, request.GroupDescription, true);
             }
 
+            return Task.CompletedTask;
+        }
+
+        public Task AddPermissionLevelToGroupAsync(GroupPermissionRequest request)
+        {
+            using var context = GetSharePointOnlineContext(request.SiteUrl);
+
             context.Web.AddPermissionLevelToGroup(request.GroupName, request.Role.GetRoleType());
+            return Task.CompletedTask;
+        }
+
+        public Task AddPermissionLevelToUserAsync(GroupPermissionRequest request)
+        {
+            using var context = GetSharePointOnlineContext(request.SiteUrl);
+
+            foreach (var user in request.Users)
+            {
+                context.Web.AddPermissionLevelToUser(user, request.Role.GetRoleType());
+            }
 
             return Task.CompletedTask;
         }
 
-        public Task AddPermissionLevelToUserAsync(AddPermissionLevelToUserRequest request)
+        public Task AddUserToGroupAsync(GroupPermissionRequest request)
         {
-            using var authenticationManager = new AuthenticationManager();
-            using var context = authenticationManager.GetSharePointOnlineAuthenticatedContextTenant(
-                request.SiteUrl,
-                AppConfigurations.SpoUserAdmin,
-                AppConfigurations.PasswordSecure);
+            using var context = GetSharePointOnlineContext(request.SiteUrl);
 
-            context.Web.AddPermissionLevelToUser(request.User, request.Role.GetRoleType());
-            return Task.CompletedTask;
-        }
-
-        public Task AddUserToGroupAsync(AddUserToGroupRequest request)
-        {
-            using var authenticationManager = new AuthenticationManager();
-            using var context = authenticationManager.GetSharePointOnlineAuthenticatedContextTenant(
-                request.SiteUrl,
-                AppConfigurations.SpoUserAdmin,
-                AppConfigurations.PasswordSecure);
-
-            foreach(var user in request.Users)
+            foreach (var user in request.Users)
             {
                 context.Web.AddUserToGroup(request.GroupName, user);
             }
@@ -59,15 +56,21 @@ namespace SharepointClientApi.Infrastructure
 
         public Task BreakPermissionsAsync(string siteUrl, string listName)
         {
-            using var authenticationManager = new AuthenticationManager();
-            using var context = authenticationManager.GetSharePointOnlineAuthenticatedContextTenant(
-                siteUrl,
-                AppConfigurations.SpoUserAdmin,
-                AppConfigurations.PasswordSecure);
-
+            using var context = GetSharePointOnlineContext(siteUrl);
             var list = context.Web.Lists.GetByTitle(listName);
             list.BreakRoleInheritance(false, true);
             return Task.CompletedTask;
+        }
+
+        private static ClientContext GetSharePointOnlineContext(string siteUrl)
+        {
+            using var authenticationManager = new AuthenticationManager();
+            {
+                return authenticationManager.GetSharePointOnlineAuthenticatedContextTenant(
+                    siteUrl,
+                    AppConfigurations.SpoUserAdmin,
+                    AppConfigurations.PasswordSecure);
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SharepointClientApi.Domains.Abstractions;
+using SharepointClientApi.Domains.Implementations;
 using SharepointClientApi.Infrastructure;
 using System;
 using System.Linq;

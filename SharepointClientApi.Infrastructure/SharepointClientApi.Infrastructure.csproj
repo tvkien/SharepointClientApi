@@ -197,8 +197,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClientTeamHanlder.cs" />
     <Compile Include="Extensions\RoleExtension.cs" />
+    <Compile Include="Extensions\SharingDocumentExtension.cs" />
     <Compile Include="FileClientApi.cs" />
     <Compile Include="GraphClientApi.cs" />
     <Compile Include="ListClientApi.cs" />

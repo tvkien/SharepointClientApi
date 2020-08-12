@@ -4,11 +4,13 @@ namespace SharepointClientApi.Domains.Abstractions
 {
     public interface IPermissionClientApi
     {
-        Task AddGroupAsync(AddGroupRequest request);
+        Task AddGroupAsync(GroupPermissionRequest request);
 
-        Task AddUserToGroupAsync(AddUserToGroupRequest request);
+        Task AddUserToGroupAsync(GroupPermissionRequest request);
 
-        Task AddPermissionLevelToUserAsync(AddPermissionLevelToUserRequest request);
+        Task AddPermissionLevelToUserAsync(GroupPermissionRequest request);
+
+        Task AddPermissionLevelToGroupAsync(GroupPermissionRequest request);
 
         Task BreakPermissionsAsync(string siteUrl, string listName);
     }

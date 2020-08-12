@@ -4,6 +4,8 @@ namespace SharepointClientApi.Domains.Abstractions
 {
     public interface IClientTeamHanlder
     {
-        Task Handle(ClientTeamRequest request);
+        Task HandleAsync(ClientTeamRequest request);
+
+        Task ExternalSharingAsync(ClientTeamRequest request);
     }
 }

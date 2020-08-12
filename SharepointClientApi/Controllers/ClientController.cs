@@ -36,7 +36,7 @@ namespace SharepointClientApi.Controllers
                     Title = request.Title
                 });
 
-                await clientTeamHanlder.Handle(new ClientTeamRequest
+                await clientTeamHanlder.HandleAsync(new ClientTeamRequest
                 {
                     SiteUrl = siteUrl,
                     DocumentName = request.DocumentName,
