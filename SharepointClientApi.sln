@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharepointClientApi.Domains
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharepointClientApi.Infrastructure", "SharepointClientApi.Infrastructure\SharepointClientApi.Infrastructure.csproj", "{3DEB8ABD-14DA-4952-A85C-3DB4977D6AF6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharepointClientApi.Grpah", "SharepointClientApi.Grpah\SharepointClientApi.Grpah.csproj", "{335314B8-5C5D-4984-AB3A-155BF0508302}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharepointClientApi.ConsoleApp", "SharepointClientApi.ConsoleApp\SharepointClientApi.ConsoleApp.csproj", "{68526740-006B-4FB9-BED6-0FFFA4E32FE1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{3DEB8ABD-14DA-4952-A85C-3DB4977D6AF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3DEB8ABD-14DA-4952-A85C-3DB4977D6AF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3DEB8ABD-14DA-4952-A85C-3DB4977D6AF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{335314B8-5C5D-4984-AB3A-155BF0508302}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{335314B8-5C5D-4984-AB3A-155BF0508302}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{335314B8-5C5D-4984-AB3A-155BF0508302}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{335314B8-5C5D-4984-AB3A-155BF0508302}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68526740-006B-4FB9-BED6-0FFFA4E32FE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68526740-006B-4FB9-BED6-0FFFA4E32FE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68526740-006B-4FB9-BED6-0FFFA4E32FE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68526740-006B-4FB9-BED6-0FFFA4E32FE1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
