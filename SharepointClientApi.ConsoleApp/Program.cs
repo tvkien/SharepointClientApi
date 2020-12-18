@@ -4,18 +4,14 @@ using Microsoft.Graph;
 //using Microsoft.Identity.Client;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using SharepointClientApi.Grpah;
+using SharepointClientApi.Grpah.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
-using System.Text.Json;
-using System.Threading;
 using System.Threading.Tasks;
-using System.Transactions;
 
 namespace SharepointClientApi.ConsoleApp
 {
@@ -26,21 +22,36 @@ namespace SharepointClientApi.ConsoleApp
 
         public static async Task Main(string[] args)
         {
+            Console.WriteLine("Start");
             var site = @"https://titanpod2.sharepoint.com/sites/AuvenirDev__EnvironmentPrefix__-03669893-fb4b-48a7-ab8e-772388635432/23c5dd6f-1467-4de0-9ee1-18e80fc32acb";
-            var uriSite = new Uri(site);
+            //var uriSite = new Uri(site);
 
-            var token = await GetAccessTokenKienAsync();
+            //var token = await GetAccessTokenKienAsync();
 
             try
             {
-                graphServiceClient = new GraphServiceClient(
-                               new DelegateAuthenticationProvider(
-                                   async (requestMessage) =>
-                                   {
-                                       requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                                   }));
+                var serviceProvider = BuildServiceProvider();
+                var fileGraphApi = serviceProvider.GetRequiredService<IFileGraphApi>();
+                var tokenManager = serviceProvider.GetRequiredService<ITokenManager>();
 
-                await UploadLargeFileAsync(site, @"D:\QLBH 2020 - Kien.xls");
+                var accesstoken = await tokenManager.AcquireTokenByUsernamePasswordAsync();
+                var accesstoken1 = await tokenManager.AcquireTokenByUsernamePasswordAsync();
+                var accesstoken2 = await tokenManager.AcquireTokenByUsernamePasswordAsync();
+                var accesstoken3 = await tokenManager.AcquireTokenByUsernamePasswordAsync();
+                var accesstoken4 = await tokenManager.AcquireTokenByUsernamePasswordAsync();
+                var accesstoken5 = await tokenManager.AcquireTokenByUsernamePasswordAsync();
+                var accesstoken6 = await tokenManager.AcquireTokenByUsernamePasswordAsync();
+
+                //await fileGraphApi.UploadLargeFileAsync(site, @"D:\QLBH 2020 - Kien.xls");
+
+                //graphServiceClient = new GraphServiceClient(
+                //               new DelegateAuthenticationProvider(
+                //                   async (requestMessage) =>
+                //                   {
+                //                       requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                //                   }));
+
+                //await UploadLargeFileAsync(site, @"D:\QLBH 2020 - Kien.xls");
             }
             catch (Exception ex)
             {
@@ -174,6 +185,18 @@ namespace SharepointClientApi.ConsoleApp
             {
                 Console.WriteLine($"Error uploading: {ex.ToString()}");
             }
+        }
+
+        private static IServiceProvider BuildServiceProvider()
+        {
+            IConfiguration configuration = new ConfigurationBuilder()
+                    .SetBasePath(System.IO.Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsettings.json")
+                    .Build();
+
+            var services = new ServiceCollection();
+            services.AddAzureInfrastructure(configuration);
+            return services.BuildServiceProvider();
         }
     }
 }

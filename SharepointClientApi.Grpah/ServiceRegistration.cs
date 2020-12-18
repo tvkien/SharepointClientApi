@@ -16,6 +16,7 @@ namespace SharepointClientApi.Grpah
             services.AddScoped<ITokenManager, TokenManager>();
             services.AddScoped<IGraphServiceClient, GraphServiceClient>();
             services.AddScoped<IAuthenticationProvider, GraphAuthenticationProvider>();
+            services.AddScoped<IFileGraphApi, FileGraphApi>();
         }
     }
 }
