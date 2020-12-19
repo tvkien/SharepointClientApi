@@ -16,6 +16,25 @@ namespace SharepointClientApi.Grpah.Implements
             this.graphServiceClient = graphServiceClient;
         }
 
+        public async Task CreateFolderAsync(string siteUrl, string folderName)
+        {
+            var uriSite = new Uri(siteUrl);
+            var siteCollection = await graphServiceClient.Sites.GetByPath(uriSite.AbsolutePath, uriSite.Host).Request().GetAsync();
+            var drive = graphServiceClient.Sites[siteCollection.Id].Drive.Root;
+
+            var driveItem = new DriveItem
+            {
+                Name = folderName,
+                Folder = new Folder { },
+                AdditionalData = new Dictionary<string, object>()
+                {
+                    {"@microsoft.graph.conflictBehavior", "rename"}
+                }
+            };
+
+            await drive.Children.Request().AddAsync(driveItem);
+        }
+
         public async Task UploadFileAsync(string siteUrl, string pathToFile)
         {
             var uriSite = new Uri(siteUrl);

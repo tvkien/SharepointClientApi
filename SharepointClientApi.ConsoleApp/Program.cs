@@ -32,15 +32,7 @@ namespace SharepointClientApi.ConsoleApp
             {
                 var serviceProvider = BuildServiceProvider();
                 var fileGraphApi = serviceProvider.GetRequiredService<IFileGraphApi>();
-                var tokenManager = serviceProvider.GetRequiredService<ITokenManager>();
-
-                var accesstoken = await tokenManager.AcquireTokenByUsernamePasswordAsync();
-                var accesstoken1 = await tokenManager.AcquireTokenByUsernamePasswordAsync();
-                var accesstoken2 = await tokenManager.AcquireTokenByUsernamePasswordAsync();
-                var accesstoken3 = await tokenManager.AcquireTokenByUsernamePasswordAsync();
-                var accesstoken4 = await tokenManager.AcquireTokenByUsernamePasswordAsync();
-                var accesstoken5 = await tokenManager.AcquireTokenByUsernamePasswordAsync();
-                var accesstoken6 = await tokenManager.AcquireTokenByUsernamePasswordAsync();
+                await fileGraphApi.CreateFolderAsync(site, "New Folder Name Test");
 
                 //await fileGraphApi.UploadLargeFileAsync(site, @"D:\QLBH 2020 - Kien.xls");
 
