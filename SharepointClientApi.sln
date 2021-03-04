@@ -9,9 +9,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharepointClientApi.Domains
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharepointClientApi.Infrastructure", "SharepointClientApi.Infrastructure\SharepointClientApi.Infrastructure.csproj", "{3DEB8ABD-14DA-4952-A85C-3DB4977D6AF6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharepointClientApi.Grpah", "SharepointClientApi.Grpah\SharepointClientApi.Grpah.csproj", "{335314B8-5C5D-4984-AB3A-155BF0508302}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharepointClientApi.Grpah", "SharepointClientApi.Grpah\SharepointClientApi.Grpah.csproj", "{335314B8-5C5D-4984-AB3A-155BF0508302}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharepointClientApi.ConsoleApp", "SharepointClientApi.ConsoleApp\SharepointClientApi.ConsoleApp.csproj", "{68526740-006B-4FB9-BED6-0FFFA4E32FE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharepointClientApi.ConsoleApp", "SharepointClientApi.ConsoleApp\SharepointClientApi.ConsoleApp.csproj", "{68526740-006B-4FB9-BED6-0FFFA4E32FE1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MigrateNETCore", "MigrateNETCore", "{CFD013CA-E7CD-403F-8ACC-54AF24EF08E8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sharepoint.Business", "MigrateNETCore\Sharepoint.Business\Sharepoint.Business.csproj", "{CCE65F90-080D-462B-A6F6-5E842F9E33F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sharepoint.Api.NetCore", "MigrateNETCore\Sharepoint.Api.NetCore\Sharepoint.Api.NetCore.csproj", "{F64C239B-9FFE-473C-B44C-84650F620EF1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,9 +45,21 @@ Global
 		{68526740-006B-4FB9-BED6-0FFFA4E32FE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68526740-006B-4FB9-BED6-0FFFA4E32FE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68526740-006B-4FB9-BED6-0FFFA4E32FE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCE65F90-080D-462B-A6F6-5E842F9E33F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCE65F90-080D-462B-A6F6-5E842F9E33F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCE65F90-080D-462B-A6F6-5E842F9E33F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCE65F90-080D-462B-A6F6-5E842F9E33F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F64C239B-9FFE-473C-B44C-84650F620EF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F64C239B-9FFE-473C-B44C-84650F620EF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F64C239B-9FFE-473C-B44C-84650F620EF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F64C239B-9FFE-473C-B44C-84650F620EF1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CCE65F90-080D-462B-A6F6-5E842F9E33F2} = {CFD013CA-E7CD-403F-8ACC-54AF24EF08E8}
+		{F64C239B-9FFE-473C-B44C-84650F620EF1} = {CFD013CA-E7CD-403F-8ACC-54AF24EF08E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FF26D3C4-33E1-4F3F-A682-999F09B5D63D}
