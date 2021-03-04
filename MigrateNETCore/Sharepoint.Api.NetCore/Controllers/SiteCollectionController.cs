@@ -24,8 +24,8 @@ namespace Sharepoint.Api.NetCore.Controllers
             _siteCollectionManager = siteCollectionManager;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Post()
+        [HttpPost("CreateSiteCollection")]
+        public async Task<IActionResult> CreateSiteCollectionAsync()
         {
             try
             {
@@ -39,6 +39,22 @@ namespace Sharepoint.Api.NetCore.Controllers
                 return Ok(siteUrl);
             }
             catch(Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+
+        [HttpPost("CreateSubSite")]
+        public async Task<IActionResult> CreateSubSiteAsync(CreateSubSiteRequest request)
+        {
+            try
+            {
+                var alias = Guid.NewGuid().ToString();
+                var siteUrl = await _siteCollectionManager.CreateSubSiteAsync(request);
+
+                return Ok(siteUrl);
+            }
+            catch (Exception ex)
             {
                 return BadRequest(ex);
             }
