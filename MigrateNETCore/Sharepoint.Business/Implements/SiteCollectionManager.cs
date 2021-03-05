@@ -25,8 +25,9 @@ namespace Sharepoint.Business.Implements
         {
             var accessToken = await tokenManager.GetAccessTokenSPOAsync(spoSetting.SiteUrlAdmin);
             var accessTokenSecure = accessToken.ToSecureString();
-            var authManager = new AuthenticationManager(accessTokenSecure);
+            using var authManager = new AuthenticationManager(accessTokenSecure);
             using var context = authManager.GetContext(spoSetting.SiteUrlAdmin);
+
             var site = new TeamNoGroupSiteCollectionCreationInformation
             {
                 Owner = spoSetting.UserName,
@@ -44,8 +45,9 @@ namespace Sharepoint.Business.Implements
         {
             var accessToken = await tokenManager.GetAccessTokenSPOAsync(request.SiteCollection);
             var accessTokenSecure = accessToken.ToSecureString();
-            var authManager = new AuthenticationManager(accessTokenSecure);
+            using var authManager = new AuthenticationManager(accessTokenSecure);
             using var context = authManager.GetContext(request.SiteCollection);
+
             var siteEntity = new SiteEntity
             { 
                 Title = request.AliasSubsite,
@@ -55,6 +57,20 @@ namespace Sharepoint.Business.Implements
 
             context.Web.CreateWeb(siteEntity);
             return $"{request.SiteCollection.RemoveLastSlash()}/{request.AliasSubsite}";
+        }
+
+        public async Task<bool> DeleteSiteCollectionAsync(string siteUrl)
+        {
+            var accessToken = await tokenManager.GetAccessTokenSPOAsync(siteUrl);
+            var accessTokenSecure = accessToken.ToSecureString();
+            using var authManager = new AuthenticationManager(accessTokenSecure);
+            using var context = authManager.GetContext(siteUrl);
+
+            if (context.WebExistsFullUrl(siteUrl))
+            {
+                await SiteCollection.DeleteSiteAsync(context);
+            }
+            return true;
         }
     }
 }

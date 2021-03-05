@@ -8,5 +8,7 @@ namespace Sharepoint.Business.Interfaces
         Task<string> CreateSiteCollectionAsync(SiteCollectionRequest request);
 
         Task<string> CreateSubSiteAsync(CreateSubSiteRequest request);
+
+        Task<bool> DeleteSiteCollectionAsync(string siteUrl);
     }
 }
